@@ -1,0 +1,64 @@
+#include <Wire.h>
+#include <Adafruit_GFX.h>
+#include <Adafruit_ST7789.h>
+#include <Adafruit_VL53L0X.h>
+
+// Пины подключения для ESP32
+#define TFT_CS   5
+#define TFT_RST  4
+#define TFT_DC   2
+
+// Пины для I2C (для ESP32 можно выбрать любые пины)
+#define SDA_PIN  21  // Пин SDA
+#define SCL_PIN  22  // Пин SCL
+
+// Создаем объект дисплея
+Adafruit_ST7789 tft = Adafruit_ST7789(TFT_CS, TFT_DC, TFT_RST);
+
+// Создаем объект для работы с VL53L0X
+Adafruit_VL53L0X lox = Adafruit_VL53L0X();
+
+void setup() {
+    Serial.begin(115200);
+    Serial.println("Initializing...");
+
+    // Инициализация дисплея
+    tft.init(240, 320);
+    tft.setRotation(1);  // Ориентация экрана
+    tft.fillScreen(ST77XX_BLACK);  // Черный фон
+
+    // Инициализация I2C с заданными пинами для ESP32
+    Wire.begin(SDA_PIN, SCL_PIN);
+
+    // Инициализация датчика VL53L0X
+    if (!lox.begin()) {
+        Serial.println("Failed to initialize VL53L0X sensor!");
+        while (1);
+    }
+
+    // Настроим текст на дисплее
+    tft.setTextSize(2);  // Размер шрифта
+    tft.setCursor(10, 10);  // Начальная позиция
+    tft.print("Distance: ");
+}
+
+void loop() {
+    VL53L0X_RangingMeasurementData_t measure;
+    lox.rangingTest(&measure, false); // Запуск измерения
+
+    // Проверка на успешность измерения
+    if (measure.RangeStatus != 4) { // Если измерение корректное
+        // Отображаем расстояние на экране
+        tft.fillRect(10, 30, 230, 30, ST77XX_BLACK);  // Очистим область для нового текста
+        tft.setCursor(10, 30);  // Новая позиция
+        tft.print("Distance: ");
+        tft.print(measure.RangeMilliMeter);
+        tft.print(" mm");
+    } else {
+        tft.fillRect(10, 30, 230, 30, ST77XX_BLACK);  // Очистим область для нового текста
+        tft.setCursor(10, 30);
+        tft.print("Error reading distance");
+    }
+
+    delay(100);  // Задержка для обновления данных
+}

@@ -1,0 +1,38 @@
+#include <Wire.h>
+#include <VL53L1X.h>
+
+#define SDA_PIN  21   // I2C SDA
+#define SCL_PIN  22   // I2C SCL
+
+VL53L1X sensor;
+
+void setup()
+{
+  Serial.begin(115200);
+  delay(1000); // Даем время Serial запуститься
+
+  Wire.begin(SDA_PIN, SCL_PIN);
+  Wire.setClock(400000); // Используем 400 kHz I2C
+
+  sensor.setTimeout(500);
+  if (!sensor.init()) {
+    Serial.println("Failed to detect and initialize sensor!");
+    while (1);
+  }
+
+  // Настроим датчик для длинных расстояний (до 4 м)
+  sensor.setDistanceMode(VL53L1X::Long); // Используем режим длинных дистанций
+  sensor.setMeasurementTimingBudget(50000); // Устанавливаем время измерения в 50 мс
+
+  // Начинаем непрерывные измерения с интервалом 50 мс
+  sensor.startContinuous(50);
+}
+
+void loop()
+{
+  Serial.print(sensor.read());  // Выводим результат измерения
+  if (sensor.timeoutOccurred()) {
+    Serial.print(" TIMEOUT");
+  }
+  Serial.println();
+}

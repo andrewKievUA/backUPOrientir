@@ -1,0 +1,71 @@
+#include <Wire.h>
+#include <Adafruit_GFX.h>
+#include <Adafruit_ST7789.h>
+#include <VL53L1X.h>
+
+// Пины подключения для ESP32
+#define TFT_CS   5
+#define TFT_RST  4
+#define TFT_DC   2
+
+// Пины для I2C (для ESP32 можно выбрать любые пины)
+#define SDA_PIN  21  // Пин SDA
+#define SCL_PIN  22  // Пин SCL
+
+// Создаем объект дисплея
+Adafruit_ST7789 tft = Adafruit_ST7789(TFT_CS, TFT_DC, TFT_RST);
+
+// Создаем объект для работы с VL53L1X
+VL53L1X sensor;
+
+void setup() {
+    Serial.begin(115200);
+    Serial.println("Initializing...");
+
+    // Инициализация дисплея
+    tft.init(240, 320);
+    tft.setRotation(1);  // Ориентация экрана
+    tft.fillScreen(ST77XX_BLACK);  // Черный фон
+
+    // Инициализация I2C с заданными пинами для ESP32
+    Wire.begin(SDA_PIN, SCL_PIN);
+
+    // Инициализация датчика VL53L1X
+    sensor.setTimeout(500);
+    if (!sensor.init()) {
+        Serial.println("Failed to initialize VL53L1X sensor!");
+        while (1);
+    }
+
+    // Настроим датчик для длинных расстояний
+    sensor.setDistanceMode(VL53L1X::Long);
+    sensor.setMeasurementTimingBudget(50000); // Время измерения 50 мс
+
+    // Начнем непрерывные измерения с интервалом 50 мс
+    sensor.startContinuous(50);
+
+    // Настроим текст на дисплее
+    tft.setTextSize(2);  // Размер шрифта
+    tft.setCursor(10, 10);  // Начальная позиция
+    tft.print("Distance: ");
+}
+
+void loop() {
+    int distance = sensor.read();  // Считываем расстояние
+
+    // Проверяем на успешность измерения
+    if (sensor.timeoutOccurred()) {
+        tft.fillRect(10, 30, 230, 30, ST77XX_BLACK);  // Очистим область для нового текста
+        tft.setCursor(10, 30);
+        tft.print("Error reading distance");
+    } else {
+        // Отображаем расстояние на экране
+        tft.fillRect(10, 30, 230, 30, ST77XX_BLACK);  // Очистим область для нового текста
+        tft.setCursor(10, 30);  // Новая позиция
+        tft.print("Distance: ");
+        tft.print(distance);  // Печатаем расстояние
+        tft.print(" mm");
+    }
+
+    delay(100);  // Задержка для обновления данных
+}

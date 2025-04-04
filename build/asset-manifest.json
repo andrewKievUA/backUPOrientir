@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/static/css/main.c163cbab.css",
+    "main.js": "/static/js/main.b9c8ebef.js",
+    "static/media/phon_128.mp3": "/static/media/phon_128.f63c6a44d6c364d7cdc2.mp3",
+    "index.html": "/index.html",
+    "main.c163cbab.css.map": "/static/css/main.c163cbab.css.map",
+    "main.b9c8ebef.js.map": "/static/js/main.b9c8ebef.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c163cbab.css",
+    "static/js/main.b9c8ebef.js"
+  ]
+}

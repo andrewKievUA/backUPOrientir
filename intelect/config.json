@@ -1,0 +1,19 @@
+{
+    "database": {
+        "host": "localhost",
+        "user": "pallet_user",
+        "password": "pallet_password",
+        "database": "pallet_db"
+        
+    },
+    "pool": {
+        "host": "localhost",
+        "user": "pallet_user",
+        "password": "pallet_password",
+        "database": "pallet_db",
+        "connectionLimit": 10,      
+        "queueLimit": 0,             
+        "waitForConnections": true,  
+        "connectTimeout": 10000      
+    }
+}

@@ -1,0 +1,16 @@
+    if (sender_id === "1QRkv9+jALjXobF9kQNQKA==") {sender_name = "Рома Конструктор"}
+    if (sender_id === "lFFgp/qZbdrTZdf4G5mZlA==") {sender_name = "Грыбенюк it"}
+    if (sender_id === "IPirRThqT5VC6pEtgtfgDg==") {sender_name = "Исаев"}
+    if (sender_id === "91kgDvC/WPhttelZZrITow==") {sender_name = "Добряков"}
+    if (sender_id === "IVKwDiqLpwBVwdov0hLnZw==") {sender_name = "Ярик"}
+    if (sender_id === "6pMjE81DtpbPAr+pRjswfw==") {sender_name = "Григоренко"}
+    if (sender_id === "sj39n1ndKk+UOtZjt4x0Iw==") {sender_name = "Славинск"}
+    if (sender_id === "GcIM8lOzwgpbp+njykxmJQ==") {sender_name = "Черкасов"}   
+    if (sender_id === "giP0dQ92Vsj5skA8CNpnkw==") {sender_name = "Корниенко"}
+    if (sender_id === "g4J84rOsZeZaetXmP6nJTA==") {sender_name = "Ратушный"}
+    if (sender_id === "ddctqRWak1DPi1rkMoosew==") {sender_name = "Науменко"}
+    if (sender_id === "nFhkukar97xi6q9YyDznhw==") {sender_name = "Слава ОТК"}
+    if (sender_id === "noiy/De2O+yM7hdk0URPPw==") {sender_name = "Артур Щербак"}
+    if (sender_id === "zO0oC8pHpuV/odb0+C/woQ==") {sender_name = "Любовь"}
+    if (sender_id === "FiFBOtd/Mz/Oo+5rlVKsyg==") {sender_name = "Программист"}  
+      
