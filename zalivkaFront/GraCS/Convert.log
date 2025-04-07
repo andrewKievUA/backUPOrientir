@@ -1,0 +1,16 @@
+Log file for errors in PDL files.
+                 
+Section for messages while saving pictures:
+
+Project "\\AD-AS1\WinCC_Project_OS01_3\OS01.mcp"
+-----------------------------------------------------------
+12.12.2013 13:10 While saving, invalid object references were found in the picture "CNP4_BDO_MAIN.pdl". 
+                 The object "grREVERSING" references the unknown object "grRST_TO_RV" with a direct connection.  
+-----------------------------------------------------------
+12.12.2013 13:11 While saving, invalid object references were found in the picture "CNP4_BDO_MAIN.pdl". 
+                 The object "grFORWARDING" references the unknown object "grRST_TO_FW" with a direct connection.  
+                 The object "grREVERSING" references the unknown object "grRST_TO_RV" with a direct connection.  
+-----------------------------------------------------------
+12.12.2013 13:12 While saving, invalid object references were found in the picture "CNP4_BDO_MAIN.pdl". 
+                 The object "grFORWARDING" references the unknown object "grRST_TO_FW" with a direct connection.  
+                 The object "grREVERSING" references the unknown object "grRST_TO_RV" with a direct connection.  

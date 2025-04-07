@@ -1,0 +1,29 @@
+ложные дефекты
+27645
+27469
+27428
+27389
+26919a
+26907
+26878
+a
+
+
+
+                    <td>
+                      <a
+                        href={`http://192.168.10.44:3070/photo/${palletYear}/${palletMonth}/${item.pallet_number}/B`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Фото B
+                      </a>
+                      {" | "}
+                      <a
+                        href={`http://192.168.10.44:3070/photo/${palletYear}/${palletMonth}/${item.pallet_number}/D`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Фото D
+                      </a>
+                    </td>
